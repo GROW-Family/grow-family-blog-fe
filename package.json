@@ -2,7 +2,9 @@
   "name": "@food-order/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "start": "nx serve"
+  },
   "private": true,
   "dependencies": {
     "next": "14.2.3",
