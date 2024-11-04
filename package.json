@@ -3,7 +3,10 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "nx serve"
+    "start": "nx serve",
+    "start-user-web": "nx serve user-wed",
+    "start-admin-web": "nx serve admin-web",
+    "serve-all": "nx serve user-wed & nx serve admin-web"
   },
   "private": true,
   "dependencies": {
