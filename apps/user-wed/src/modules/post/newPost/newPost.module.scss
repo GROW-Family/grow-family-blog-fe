@@ -1,0 +1,63 @@
+.contentContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 32px;
+}
+
+.lable {
+  width: 100%;
+  height: 32px;
+  font-size: 16px;
+  font-weight: bold;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.code {
+  width: 100%;
+  min-height: 48px;
+  font-size: 13px;
+  height: fit-content;
+  color: rgb(30, 30, 100);
+  padding: 8px;
+  background-color: rgb(200, 205, 210);
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.controllItem {
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 16px;
+  padding-right: 8px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.deleteBtn{
+  width: 24px;
+  height: 24px;
+}
+
+.type {
+  padding: 8px;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 14px;
+  width: 'fit-content';
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

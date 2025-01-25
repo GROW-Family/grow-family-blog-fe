@@ -1,0 +1,1 @@
+type IconType = 'delete' | 'add' | 'edit';

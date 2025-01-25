@@ -1,0 +1,79 @@
+.lable-text {
+  font-size: 16;
+  font-weight: bold;
+  color: #a3a3a3;
+  grid-column: span 4;
+  width: 100%;
+}
+.value-text {
+  font-size: 14;
+  font-weight: '500';
+  color: #3a3d5b;
+  grid-column: span 6;
+  width: 100%;
+}
+
+.item {
+  display: grid;
+  //   align-items: flex-start;
+  //   justify-content: flex-start;
+  //   flex-direction: row;
+  gap: 8px;
+  grid-template-columns: repeat(min(10), 1fr);
+  width: 100%;
+}
+
+.name {
+  font-size: 30px;
+  font-weight: bold;
+  color: #6a24ff;
+}
+
+.title {
+  font-size: 16px;
+  font-weight: bold;
+  color: #1d2254;
+}
+
+.card {
+  display: flex;
+  align-items: 'flex-start';
+  justify-content: center;
+  width: 100%;
+  gap: 8px;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.box-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.box-row-item {
+  grid-column: span 1;
+}
+
+.lable {
+  font-size: 16px;
+  font-weight: 700;
+  color: #6a24ff;
+}
+
+.lable-v2 {
+  font-size: 13px;
+  font-weight: 700;
+  color: #6a24ff;
+}
+
+.dot {
+  font-size: 10px;
+  color: #6a24ff;
+}
+
+.text {
+  font-size: 12px;
+  color: #6a24ff;
+  font-weight: 400;
+}
