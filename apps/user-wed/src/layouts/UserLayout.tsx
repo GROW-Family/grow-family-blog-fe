@@ -3,11 +3,11 @@
  * All rights reserved.
  *********************************************************/
 
-import { Box, Grid2 } from '@mui/material';
+import { Box } from '@mui/material';
 import React from 'react';
+import styled from 'styled-components';
 import Header from './user/Header';
 import NavVertical from './user/nav/NavVertical';
-import styled from 'styled-components';
 
 const Container = styled.div`
   display: grid;

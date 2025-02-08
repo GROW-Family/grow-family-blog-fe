@@ -1,4 +1,6 @@
 'use client';
+import PrimaryButton from '@libs/button';
+import SearchIcon from '@mui/icons-material/Search';
 import {
   AppBar,
   Avatar,
@@ -14,13 +16,10 @@ import {
   Tooltip,
   Typography,
 } from '@mui/material';
+import Image from 'next/image';
+import Link from 'next/link';
 import React, { useState } from 'react';
 import Footer from './main/Footer';
-import SearchIcon from '@mui/icons-material/Search';
-import Link from 'next/link';
-import Image from 'next/image';
-import { Add, PlusOne } from '@mui/icons-material';
-import PrimaryButton from '@libs/button';
 
 const pages = ['Technology', 'Book', 'Business'];
 
