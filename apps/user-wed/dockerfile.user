@@ -10,7 +10,7 @@ COPY . .
 
 RUN yarn nx build user-web --configuration=production
 
-FROM node:18-alpline as runner
+FROM node:18-alpine as runner
 
 WORKDIR /app
 
