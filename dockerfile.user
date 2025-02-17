@@ -19,7 +19,7 @@ COPY package.json yarn.lock ./
 
 RUN yarn
 
-COPY --from=base /app/user-web/build/production ./
+COPY --from=base app/dist/apps/user-wed ./
 
 EXPOSE 4201
 

@@ -24,6 +24,15 @@
           "dev": false
         }
       }
+    },
+    "build": {
+      "executor": "@nx/next:build",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "outputPath": "dist/apps/user-wed",
+        "root": "apps/user-wed"
+      }
     }
   }
 }

@@ -35,7 +35,7 @@ const Content = styled(Box)`
 
 interface IPrimaryButtonProps {
   href?: string;
-  icon?: IconType;
+  icon?: any;
   children?: ReactNode;
 }
 
