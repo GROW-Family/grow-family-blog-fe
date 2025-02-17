@@ -31,7 +31,7 @@ const LINKS = [
     headline: 'Contact',
     children: [
       {
-        name: 'trongqui2712@gmail.com',
+        name: 'negu@gmail.com',
         href: '',
       },
       {
