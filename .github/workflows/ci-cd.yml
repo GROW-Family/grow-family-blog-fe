@@ -14,7 +14,7 @@ jobs:
     - name: Checkout code 
       uses: actions/checkout@v4
     - name: Deploy VPS
-      uses: appdeploy/ssh-action@v0.1.10
+      uses: appleboy/ssh-action@v0.1.10
 
       with: 
        host: ${{ secrets.VPS_HOST }}
