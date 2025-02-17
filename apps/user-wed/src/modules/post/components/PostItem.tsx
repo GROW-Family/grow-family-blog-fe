@@ -1,11 +1,10 @@
+"use client"
 /********************************************************
  * Copyright 2024 Nguyen Trong Qui.
  * All rights reserved.
  *********************************************************/
 
-import FavoriteIcon from '@mui/icons-material/Favorite';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import ShareIcon from '@mui/icons-material/Share';
 import {
   Avatar,
   Card,
@@ -16,12 +15,10 @@ import {
   Chip,
   IconButton,
   Stack,
-  styled,
   Typography,
 } from '@mui/material';
 import Link from 'next/link';
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import ArrowOutwardIcon from '@mui/icons-material/ArrowOutward';
+import styled from 'styled-components';
 
 const PostiContainer = styled(Card)`
   width: 100%;
