@@ -1,0 +1,32 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+jobs:
+
+  build: 
+    runs-on: ubuntu-latest
+
+    steps: 
+    - name: Checkout code 
+      uses: actions/checkout@v4
+    - name: Deploy VPS
+      uses: appdeploy/ssh-action@v0.1.10
+
+      with: 
+       host: ${{ secrets.VPS_HOST }}
+       username: ${{ secrets.VPS_USER }}
+       password: ${{ secrets.VPS_PASSWORD }}
+       script: |
+           cd grow-family-blog-fe
+           git pull
+           docker rmi blog
+           docker build -f dockerfile.user -t blog .
+           docker stop blog_web
+           docker rm blog_web
+           docker run -d --name blog_web -p 4201:3000 blog
+         
+  
