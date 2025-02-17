@@ -8,7 +8,7 @@ RUN yarn
 
 COPY . .
 
-RUN yarn nx build user-web --configuration=production
+RUN yarn nx build user-wed --configuration=production
 
 FROM node:18-alpine as runner
 
