@@ -6,7 +6,8 @@
     "start": "nx serve",
     "start-user-web": "nx serve user-wed",
     "start-admin-web": "nx serve admin-web",
-    "serve-all": "nx serve user-wed & nx serve admin-web"
+    "serve-all": "nx serve user-wed & nx serve admin-web",
+    "build-user-web": "nx build user-wed --configuration=production"
   },
   "private": true,
   "dependencies": {
