@@ -23,4 +23,4 @@ COPY --from=base app/dist/apps/user-wed ./
 
 EXPOSE 4201
 
-CMD ["yarn", "nx", "serve", "user-wed ", "--configuration=production"]
+CMD ["yarn", "start"]
