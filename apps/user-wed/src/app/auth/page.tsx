@@ -1,13 +1,7 @@
-/********************************************************
- * Copyright 2024 Nguyen Trong Qui.
- * All rights reserved.
- *********************************************************/
+import { redirect } from 'next/navigation';
 
-import React from 'react';
-import Login from '../../modules/auth/login';
-
-function page() {
-  return <Login />;
+type Props = object
+const Index = async (props: Props) => {
+  redirect('/auth/signIn')
 }
-
-export default page;
+export default Index
