@@ -5,8 +5,8 @@ import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import Head from 'next/head';
 import 'next/navigation';
-import HomePage from '../modules/home/HomePage';
 import MainLayout from '../layouts/MainLayout';
+import HomePage from '../modules/home/HomePage';
 
 export default function Home() {
   return (

@@ -50,7 +50,7 @@ function MainLayout({ children }: IMainLayoutProps) {
               alt="logo"
               width={100}
               height={50}
-              src="/8d64f8bb8aa9d7784ffac4bdd4878ea63b68c4bf1c4edde06d3ad2c7b9b6454c.png"
+              src="/images/neguNguNgu.png"
             />
           </Toolbar>
           <Box sx={{ flexGrow: 2, display: { xs: 'flex', md: 'none' } }}>

@@ -1,6 +1,6 @@
 'use client';
-import './global.css';
 import StoreProvider from './StoreProvider';
+import './global.css';
 
 export default function RootLayout({
   children,
@@ -11,7 +11,9 @@ export default function RootLayout({
     <StoreProvider>
       <html lang="en">
         <body>
-          <div>{children}</div>
+          <div>
+            {children}
+          </div>
         </body>
       </html>
     </StoreProvider>
