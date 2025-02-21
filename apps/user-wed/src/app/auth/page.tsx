@@ -1,7 +1,8 @@
-import { redirect } from 'next/navigation';
+import { redirect } from "next/navigation";
+import { appPaths } from "../../common/constants/appPaths";
 
-type Props = object
+type Props = object;
 const Index = async (props: Props) => {
-  redirect('/auth/signIn')
-}
-export default Index
+  redirect(appPaths.auth.signIn);
+};
+export default Index;
