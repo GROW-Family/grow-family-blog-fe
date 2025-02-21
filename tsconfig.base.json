@@ -20,6 +20,9 @@
     "paths": {
       "@libs/*": [
         "libs/components/src/lib/*"
+      ],
+      "@abc/*": [
+        "apps/user-wed/src/*"
       ]
     }
   },
