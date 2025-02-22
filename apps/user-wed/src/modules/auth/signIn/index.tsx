@@ -4,9 +4,10 @@
  *********************************************************/
 'use client';
 
-import { useState } from "react";
-
+import Link from 'next/link'
 import Image from "next/image";
+
+import { useState } from "react";
 
 function Login() {
 
@@ -14,8 +15,8 @@ function Login() {
 
   const toggleVisibility = () => setIsVisible(prevState => !prevState);
 
-  const EyeIcon = () => {
-    return isVisible? (
+  const _renderEyeIcon = () => {
+    return isVisible ? (
       <Image
         src="/images/icons/eye.svg"
         alt="eye-off"
@@ -81,7 +82,7 @@ function Login() {
                   aria-label={isVisible ? "Hide password" : "Show password"}
                   aria-pressed={isVisible}
                   aria-controls="password">
-                    <EyeIcon />
+                    <_renderEyeIcon />
                   Hide
                 </button>
               </div>
@@ -97,9 +98,7 @@ function Login() {
 
           </div>
           <div className="text-right mt-3">
-            <span className="text-base font-normal underline cursor-pointer text-gray-900">
-              Forget your password
-            </span>
+            <Link href="/forget-password" className="text-base font-normal underline cursor-pointer text-gray-900">Forget your password</Link>
           </div>
           <button className="w-[300px] h-16 bg-blue-600 text-white border-none rounded-full cursor-pointer transition-all duration-300 text-xl font-normal mt-4 mb-3 hover:bg-blue-800"
           >
@@ -108,9 +107,7 @@ function Login() {
           <br />
           <span className="text-base font-normal text-gray-500">
             Don&apos;t have an account?
-            <a href="#" className="underline ml-1 text-gray-900">
-              Sign up
-            </a>
+            <Link href="/auth/signUp" className="underline ml-1 text-gray-900">Sign up</Link>
           </span>
         </div>
       </div>
