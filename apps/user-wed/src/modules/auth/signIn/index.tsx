@@ -41,7 +41,7 @@ function Login() {
         <div className="w-full bg-white mt-8 pl-24 pr-24">
           <Image
             src="/images/logo/logo.jpg"
-            alt="negu logo"
+            alt="logo"
             width={60}
             height={60}
             className="flex mx-auto w-20 h-20"
