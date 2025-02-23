@@ -1,6 +1,6 @@
 import SvgIconComponent from "@libs/svgIcon";
 import { EnumSvgIcon } from "@libs/svgIcon/iconEnum";
-import { ButtonBase, TextField } from "@mui/material";
+import { TextField } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
 import { appPaths } from "../../../common/constants/appPaths";
@@ -30,7 +30,9 @@ function Login() {
             <p className="text-16xNormal font-medium text-neutral-90">OR</p>
             <hr className="h-[2px] w-full border-neutral-50" />
           </div>
-          <form action={submitSignInForm}>
+          <form
+            action={submitSignInForm}
+          >
             <div className="flex-col-center gap-[18px]">
               <TextField
                 name="username"
@@ -61,19 +63,19 @@ function Login() {
                   Forget your password
                 </Link>
               </div>
-              <ButtonBase
+              <button
                 type="submit"
                 className="flex-center mr-auto h-16 w-[304px] rounded-[32px] bg-neutral-100 text-xl font-semibold leading-normal text-white opacity-25"
               >
                 Sign in
-              </ButtonBase>
+              </button>
             </div>
           </form>
           <Link
             href={appPaths.auth.signUp}
             className="mr-auto text-16xNormal text-neutral-90"
           >
-            Don’t have an acount?{" "}
+            Don’t have an account?{" "}
             <span className="cursor-pointer underline">Sign up</span>
           </Link>
         </div>

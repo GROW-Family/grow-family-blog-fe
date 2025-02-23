@@ -3,17 +3,22 @@ import fetcher from "userSrc/apis/fetcher";
 import { apiRoutes } from "userSrc/apis/routes";
 import { hashPassword } from "userSrc/utils/authHelper";
 
-export const signInService = async ({
-  username,
-  password,
-}: {
-  username: string;
-  password: string;
-}) => {
-  const pw = hashPassword(password);
+export const signInService = async (
+  payload: {
+    username: string;
+    password: string;
+  },
+  callback?: (res: any) => void,
+) => {
+  const pw = hashPassword(payload.password);
   const res = await fetcher
-    .post(apiRoutes.auth.signIn, { username, password: pw }, {})
+    .post(
+      apiRoutes.auth.signIn,
+      { username: payload.username, password: pw },
+      {},
+    )
     .then((res) => {
+      callback?.(res);
       return res.payload ?? null;
     })
     .catch((err) => {
