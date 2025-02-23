@@ -1,19 +1,19 @@
 /* eslint-disable @nx/enforce-module-boundaries */
 import type { Metadata } from "next";
-import Login from "userSrc/modules/auth/SignIn";
+import SignUp from "userSrc/modules/auth/SignUp";
 import AuthLayout from "../../../layouts/AuthLayout";
 
 export const metadata: Metadata = {
-  title: "Sign In page",
-  description: "Sign In page",
+  title: "Sign Up page",
+  description: "Sign Up page",
 };
 
-function LogInPage() {
+function SignUpPage() {
   return (
     <AuthLayout>
-      <Login />
+      <SignUp />
     </AuthLayout>
   );
 }
 
-export default LogInPage;
+export default SignUpPage;
