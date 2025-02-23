@@ -8,7 +8,7 @@ import CodeIcon from "@mui/icons-material/Code";
 import LabelIcon from "@mui/icons-material/Label";
 import NotesIcon from "@mui/icons-material/Notes";
 import { Box, Button, Container, Tooltip } from "@mui/material";
-import { usePostZustand } from "userSrc/hook/zustands/usePostZustand";
+import { usePostZustand } from '../../../hook/zustands/usePostZustand';
 
 export default function NewPostLayout({
   children,

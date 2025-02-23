@@ -7,7 +7,7 @@ import Editor from "@libs/editor/Editor";
 import UploadImage from "@libs/file/UploadImage";
 import { Box, Input } from "@mui/material";
 import "react-quill/dist/quill.snow.css";
-import { usePostZustand } from "userSrc/hook/zustands/usePostZustand";
+import { usePostZustand } from '../../../hook/zustands/usePostZustand';
 
 import styles from "./newPost.module.scss";
 
@@ -15,14 +15,9 @@ function NewPost() {
   const {
     data: { Foreword, Title, Node },
     setTitle,
-    addNode,
     setForeword,
     editNode,
   } = usePostZustand();
-
-  // useEffect(() => {
-  //   console.log("---> Title: ", Node);
-  // }, [Node]);
 
   const handleChangeNode = (value: NodeType) => {
     const team: NodeType[] = Node ? Node : [];

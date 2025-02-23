@@ -6,10 +6,10 @@
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Box, Button, SxProps, Theme, Typography } from "@mui/material";
 import { useState } from "react";
-import { useAppDispatch, useAppSelector } from "../../../hook/redux";
+import { useAppDispatch } from "../../../hook/redux";
+import { usePostZustand } from '../../../hook/zustands/usePostZustand';
 import { handleDeleteNode } from "../../../redux/post/NewPostSlice";
 import styles from "./newPost.module.scss";
-import { usePostZustand } from "userSrc/hook/zustands/usePostZustand";
 
 const colorRender = (type: TypeNodeType): SxProps<Theme> => {
   switch (type) {
