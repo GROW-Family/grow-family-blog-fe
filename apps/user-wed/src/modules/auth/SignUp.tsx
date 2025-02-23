@@ -2,9 +2,6 @@ import SvgIconComponent from "@libs/svgIcon";
 import { EnumSvgIcon } from "@libs/svgIcon/iconEnum";
 import { TextField } from "@mui/material";
 import Image from "next/image";
-import Link from "next/link";
-import { appPaths } from "../../common/constants/appPaths";
-import { submitLogInForm } from "./formHandlers";
 
 function SignUp() {
   return (
@@ -30,7 +27,7 @@ function SignUp() {
             <p className="text-16xNormal font-medium text-neutral-90">OR</p>
             <hr className="h-[2px] w-full border-neutral-50" />
           </div>
-          <form action={submitLogInForm}>
+          {/* <form action={submitLogInForm}>
             <div className="flex-col-center gap-[18px]">
               <TextField
                 name="email"
@@ -50,7 +47,7 @@ function SignUp() {
                 Sign up
               </button>
             </div>
-          </form>
+          </form> */}
         </div>
       </div>
     </div>

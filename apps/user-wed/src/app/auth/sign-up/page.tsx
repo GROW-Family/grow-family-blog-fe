@@ -1,7 +1,6 @@
 /* eslint-disable @nx/enforce-module-boundaries */
 import type { Metadata } from "next";
 import SignUp from "userSrc/modules/auth/SignUp";
-import AuthLayout from "../../../layouts/AuthLayout";
 
 export const metadata: Metadata = {
   title: "Sign Up page",
@@ -9,11 +8,7 @@ export const metadata: Metadata = {
 };
 
 function SignUpPage() {
-  return (
-    <AuthLayout>
-      <SignUp />
-    </AuthLayout>
-  );
+  return <SignUp />;
 }
 
 export default SignUpPage;
