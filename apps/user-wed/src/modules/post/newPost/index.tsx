@@ -2,29 +2,33 @@
  * Copyright 2024 Nguyen Trong Qui.
  * All rights reserved.
  *********************************************************/
-'use client';
-import Editor from '@libs/editor/Editor';
-import UploadImage from '@libs/file/UploadImage';
-import { Box, Input } from '@mui/material';
-import { useEffect } from 'react';
-import 'react-quill/dist/quill.snow.css';
-import { useAppDispatch, useAppSelector } from '../../../hook/redux';
-import {
-  handleChangeNode,
-  setForeword,
-  setTitle,
-} from '../../../redux/post/NewPostSlice';
-import styles from './newPost.module.scss';
+"use client";
+import Editor from "@libs/editor/Editor";
+import UploadImage from "@libs/file/UploadImage";
+import { Box, Input } from "@mui/material";
+import "react-quill/dist/quill.snow.css";
+import { usePostZustand } from '../../../hook/zustands/usePostZustand';
+
+import styles from "./newPost.module.scss";
 
 function NewPost() {
-  const { Title, Foreword, Node, Id } = useAppSelector(
-    (state) => state.newPost
-  );
-  const dispatch = useAppDispatch();
+  const {
+    data: { Foreword, Title, Node },
+    setTitle,
+    setForeword,
+    editNode,
+  } = usePostZustand();
 
-  useEffect(() => {
-      console.log('---> Title: ', Node);
-  }, [Node]);
+  const handleChangeNode = (value: NodeType) => {
+    const team: NodeType[] = Node ? Node : [];
+    const indexNode = team.findIndex((e) => e.Id === value.Id);
+
+    if (indexNode > -1) {
+      team[indexNode] = value;
+    }
+
+    editNode(team);
+  };
 
   return (
     <Box>
@@ -32,26 +36,14 @@ function NewPost() {
         value={Title}
         placeholder="Tiêu đề"
         sx={{ mb: 2 }}
-        onChange={(e) =>
-          dispatch(
-            setTitle({
-              Title: e.currentTarget.value,
-            })
-          )
-        }
+        onChange={(e) => setTitle(e.currentTarget.value)}
       />
       <Editor
         id={`id-quill-one`}
         theme="snow"
         value={Foreword}
         placeholder="Mô tả tiêu đề"
-        onChange={(e) =>
-          dispatch(
-            setForeword({
-              Foreword: e,
-            })
-          )
-        }
+        onChange={(e) => setForeword(e)}
       />
 
       <Box className={styles.contentContainer}>
@@ -59,7 +51,7 @@ function NewPost() {
           Node?.length > 0 &&
           Node.map((e: NodeType) => (
             <div key={e.Id} id={e.Id}>
-              {e.Type === 'text' && (
+              {e.Type === "text" && (
                 <Editor
                   id={`id-quill${e.Id}`}
                   theme="snow"
@@ -71,11 +63,11 @@ function NewPost() {
                       Content: vl,
                     };
 
-                    dispatch(handleChangeNode(team));
+                    handleChangeNode(team);
                   }}
                 />
               )}
-              {e.Type === 'lable' && (
+              {e.Type === "lable" && (
                 <input
                   className={styles.lable}
                   type="text"
@@ -87,12 +79,12 @@ function NewPost() {
                       Content: vl.currentTarget.value,
                     };
 
-                    dispatch(handleChangeNode(team));
+                    handleChangeNode(team);
                   }}
                 />
               )}
 
-              {e.Type === 'link' && (
+              {e.Type === "link" && (
                 <input
                   className={styles.lable}
                   type="text"
@@ -104,16 +96,14 @@ function NewPost() {
                       Content: vl.currentTarget.value,
                     };
 
-                    dispatch(handleChangeNode(team));
+                    handleChangeNode(team);
                   }}
                 />
               )}
 
-              {e.Type === 'image' && (
-               <UploadImage/>
-              )}
+              {e.Type === "image" && <UploadImage />}
 
-              {e.Type === 'code' && (
+              {e.Type === "code" && (
                 <textarea
                   className={styles.code}
                   value={e.Content}
@@ -124,7 +114,7 @@ function NewPost() {
                       Content: vl.currentTarget.value,
                     };
 
-                    dispatch(handleChangeNode(team));
+                    handleChangeNode(team);
                   }}
                 />
               )}
