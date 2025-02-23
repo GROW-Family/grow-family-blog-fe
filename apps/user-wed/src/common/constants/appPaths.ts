@@ -1,8 +1,8 @@
 export const appPaths = {
   auth: {
-    signIn: "/auth/signIn",
-    signUp: "/auth/signUp",
-    forgotPassword: "/auth/forgotPassword",
-    changePassword: "/auth/changePassword",
+    signIn: "/auth/sign-in",
+    signUp: "/auth/sign-up",
+    forgotPassword: "/auth/forgot-password",
+    changePassword: "/auth/change-password",
   },
 };

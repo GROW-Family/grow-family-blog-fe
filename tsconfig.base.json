@@ -4,6 +4,7 @@
     "rootDir": ".",
     "sourceMap": true,
     "declaration": false,
+    "noImplicitAny": false,
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
@@ -21,7 +22,7 @@
       "@libs/*": [
         "libs/components/src/lib/*"
       ],
-      "@abc/*": [
+      "userSrc/*": [
         "apps/user-wed/src/*"
       ]
     }

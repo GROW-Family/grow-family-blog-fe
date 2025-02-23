@@ -1,6 +1,6 @@
 import { Add, DeleteForever } from '@mui/icons-material';
 
-const getIcon = (iconName: any) => {
+const getIcon = (iconName: unknown) => {
   switch (iconName) {
     case 'delete':
       return <DeleteForever color="error" />;

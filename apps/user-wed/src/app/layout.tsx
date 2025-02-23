@@ -1,6 +1,8 @@
-'use client';
-import StoreProvider from './StoreProvider';
-import './global.css';
+/* eslint-disable @nx/enforce-module-boundaries */
+"use client";
+import ToastProvider from "userSrc/layouts/ToastProvider";
+import StoreProvider from "./StoreProvider";
+import "./global.css";
 
 export default function RootLayout({
   children,
@@ -12,7 +14,7 @@ export default function RootLayout({
       <html lang="en">
         <body>
           <div>
-            {children}
+            <ToastProvider>{children}</ToastProvider>
           </div>
         </body>
       </html>

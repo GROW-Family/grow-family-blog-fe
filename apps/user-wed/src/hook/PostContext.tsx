@@ -17,7 +17,7 @@ export enum Types {
   SET_FOREWORD = 'SET_FOREWORD',
 }
 
-type ActionMapType<T extends { [key: string]: any }> = {
+type ActionMapType<T extends { [key: string]: unknown }> = {
   [Key in keyof T]: T[Key] extends undefined
     ? { type: Key }
     : { type: Key; payload: T[Key] };

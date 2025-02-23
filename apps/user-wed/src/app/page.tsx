@@ -10,6 +10,7 @@ import HomePage from '../modules/home/HomePage';
 
 export const metadata: Metadata = {
   title: 'Grow Blog',
+  description: 'A blog for everyone developed by Grow Team',
 }
 
 export default function Home() {

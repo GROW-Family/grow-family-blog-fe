@@ -5,12 +5,11 @@ function AuthLayout({ children }: { children: React.ReactNode }) {
   return (
     <div
       className="flex-center h-screen flex w-screen"
-      style={{ height: "100vh" }}
     >
-      <div className="relative h-full w-full bg-primary-pressed">
+      <div className="relative h-full w-full">
         <Image
           src="/images/authBackground.png"
-          alt="authBackground"
+          alt="auth background"
           width={1000}
           height={1000}
           className="object-fit h-full w-full"
