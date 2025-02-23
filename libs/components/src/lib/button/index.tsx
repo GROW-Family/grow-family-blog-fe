@@ -43,7 +43,7 @@ function PrimaryButton({ icon, children, href }: IPrimaryButtonProps) {
   return (
     <ButtonContainer href={href}>
       <Content>
-        {icon && getIcon(icon)} {children}
+        {Boolean(icon) && getIcon(icon)} {children}
       </Content>
     </ButtonContainer>
   );
