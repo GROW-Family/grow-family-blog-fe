@@ -2,12 +2,11 @@
  * Copyright 2024 Nguyen Trong Qui.
  * All rights reserved.
  *********************************************************/
-'use client';
+"use client";
 
-import CallMadeIcon from '@mui/icons-material/CallMade';
-import { Typography } from '@mui/material';
-import { useState } from 'react';
-import styled from 'styled-components';
+import CallMadeIcon from "@mui/icons-material/CallMade";
+import { Typography } from "@mui/material";
+import styled from "styled-components";
 
 const Container = styled.div`
   display: grid;
@@ -24,8 +23,10 @@ const Container = styled.div`
 
   &:hover {
     transform: scale(0.97);
-    box-shadow: 0 4px 8px rgba(6, 58, 154, 0.2),
-      0 -4px 8px rgba(6, 58, 154, 0.1), -4px 0 8px rgba(6, 58, 154, 0.15),
+    box-shadow:
+      0 4px 8px rgba(6, 58, 154, 0.2),
+      0 -4px 8px rgba(6, 58, 154, 0.1),
+      -4px 0 8px rgba(6, 58, 154, 0.15),
       4px 0 8px rgba(6, 58, 154, 0.15);
   }
 `;
@@ -82,10 +83,10 @@ const Button = styled.button`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 130px;
+  width: 150px;
   border-bottom: #cdcdcd 1px solid;
 
-  .arrow-icon{
+  .arrow-icon {
     font-size: 20px;
   }
 
@@ -94,10 +95,8 @@ const Button = styled.button`
 `;
 
 function MediaSlider() {
-  const [currentIndex, setCurrentIndex] = useState(1);
-
   return (
-    <Container>
+    <div className="h-105 rounded-2xl grid w-full cursor-pointer grid-cols-10 gap-8 border border-[#ddd] bg-[#fff] p-3 hover:shadow-sm hover:shadow-blue-700 transition duration-100 ease-in-out hover:scale-95">
       <ContentContainer>
         <Time variant="body1">Thứ 2, 20/10/2024</Time>
         <Title variant="h6">Báo cáo lương của ngành IT năm 1024</Title>
@@ -109,13 +108,13 @@ function MediaSlider() {
           Nam.
         </Description>
         <Button>
-          Xem thêm <CallMadeIcon className='arrow-icon' />
+          Xem thêm <CallMadeIcon className="arrow-icon" />
         </Button>
       </ContentContainer>
       <ImageContainer>
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Ho_Chi_Minh_City_Skyline_at_Night.jpg/268px-Ho_Chi_Minh_City_Skyline_at_Night.jpg" />
       </ImageContainer>
-    </Container>
+    </div>
   );
 }
 
