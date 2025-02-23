@@ -4,4 +4,5 @@ export const apiRoutes = {
     signIn: "/User/Login",
     signUp: "/User/Register",
   },
+  app: {}
 };
