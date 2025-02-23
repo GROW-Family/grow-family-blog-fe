@@ -1,5 +1,6 @@
 /* eslint-disable @nx/enforce-module-boundaries */
 "use client";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import ToastProvider from "userSrc/layouts/ToastProvider";
 import StoreProvider from "./StoreProvider";
 import "./global.css";
@@ -9,15 +10,17 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const queryClient = new QueryClient();
+
   return (
-    <StoreProvider>
-      <html lang="en">
-        <body>
-          <div>
+    <html lang="vi">
+      <body>
+        <QueryClientProvider client={queryClient}>
+          <StoreProvider>
             <ToastProvider>{children}</ToastProvider>
-          </div>
-        </body>
-      </html>
-    </StoreProvider>
+          </StoreProvider>
+        </QueryClientProvider>
+      </body>
+    </html>
   );
 }

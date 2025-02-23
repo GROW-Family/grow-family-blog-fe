@@ -28,9 +28,7 @@ export const request = async <Response>(
       ? process.env.NEXT_PUBLIC_API_URL
       : option.baseUrl;
 
-  const fullUrl = url.startsWith("/")
-    ? `${baseUrl}${url}`
-    : `${baseUrl}/${url}`;
+  const fullUrl = `${baseUrl}/${url}`;
   const res = await fetch(fullUrl, {
     method,
     headers: {
