@@ -1,6 +1,6 @@
-'use client';
-import PrimaryButton from '@libs/button';
-import SearchIcon from '@mui/icons-material/Search';
+"use client";
+import PrimaryButton from "@libs/button";
+import SearchIcon from "@mui/icons-material/Search";
 import {
   AppBar,
   Avatar,
@@ -15,13 +15,13 @@ import {
   Toolbar,
   Tooltip,
   Typography,
-} from '@mui/material';
-import Image from 'next/image';
-import Link from 'next/link';
-import React, { useState } from 'react';
-import Footer from './main/Footer';
+} from "@mui/material";
+import Image from "next/image";
+import Link from "next/link";
+import React, { useState } from "react";
+import Footer from "./main/Footer";
 
-const pages = ['Technology', 'Book', 'Business'];
+const pages = ["Technology", "Book", "Business"];
 
 interface IMainLayoutProps {
   children: React.ReactNode;
@@ -42,18 +42,15 @@ function MainLayout({ children }: IMainLayoutProps) {
   };
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', height: 1 }}>
-      <AppBar position="fixed" sx={{ bgcolor: '#333' }}>
-        <Container maxWidth="xl" sx={{ display: 'flex' }}>
+    <Box sx={{ display: "flex", flexDirection: "column", height: 1 }}>
+      <AppBar position="fixed" sx={{ bgcolor: "#333" }}>
+        <Container maxWidth="xl" sx={{ display: "flex" }}>
           <Toolbar disableGutters>
-            <Image
-              alt="logo"
-              width={100}
-              height={50}
-              src="/images/neguNguNgu.png"
-            />
+            <div className="h-[50px] w-[100px]">
+              <Image alt="logo" layout="fill" src="/images/neguNguNgu.png" />
+            </div>
           </Toolbar>
-          <Box sx={{ flexGrow: 2, display: { xs: 'flex', md: 'none' } }}>
+          <Box sx={{ flexGrow: 2, display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
               aria-label="account of current user"
@@ -68,24 +65,24 @@ function MainLayout({ children }: IMainLayoutProps) {
               id="menu-appbar"
               anchorEl={anchorElNav}
               anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
+                vertical: "bottom",
+                horizontal: "left",
               }}
               keepMounted
               transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
+                vertical: "top",
+                horizontal: "left",
               }}
               open={Boolean(anchorElNav)}
               // onClose={handleCloseNavMenu}
-              sx={{ display: { xs: 'block', md: 'none' } }}
+              sx={{ display: { xs: "block", md: "none" } }}
             >
               {pages.map((page) => (
                 <MenuItem
                   key={page}
                   //    onClick={handleCloseNavMenu}
                 >
-                  <Typography sx={{ textAlign: 'center' }}>{page}</Typography>
+                  <Typography sx={{ textAlign: "center" }}>{page}</Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -93,28 +90,28 @@ function MainLayout({ children }: IMainLayoutProps) {
           <Box
             sx={{
               flexGrow: 1,
-              display: { xs: 'none', xl: 'flex', md: 'flex' },
+              display: { xs: "none", xl: "flex", md: "flex" },
             }}
           >
             {pages.map((page) => (
               <Button
                 key={page}
                 //   onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
+                sx={{ my: 2, color: "white", display: "block" }}
               >
                 {page}
               </Button>
             ))}
           </Box>
-          <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center' }}>
+          <Box sx={{ flexGrow: 1, display: "flex", alignItems: "center" }}>
             <Input
-              sx={{ height: 48, width: 300, bgcolor: '#fff', pl: 2 }}
+              sx={{ height: 48, width: 300, bgcolor: "#fff", pl: 2 }}
               placeholder="Search..."
               startAdornment={<SearchIcon />}
             />
           </Box>
           <Box
-            sx={{ flexGrow: 0, display: 'flex', gap: 2, alignItems: 'center' }}
+            sx={{ flexGrow: 0, display: "flex", gap: 2, alignItems: "center" }}
           >
             <PrimaryButton href="/post/new" icon="add">
               <Typography>New Post</Typography>
@@ -130,14 +127,16 @@ function MainLayout({ children }: IMainLayoutProps) {
               open={open}
               onClose={handleClose}
               MenuListProps={{
-                'aria-labelledby': 'basic-button',
+                "aria-labelledby": "basic-button",
               }}
             >
               <MenuItem onClick={handleClose}>Profile</MenuItem>
               <MenuItem onClick={handleClose}>
                 <Link href="/studio">Studio</Link>
               </MenuItem>
-              <MenuItem onClick={handleClose}><Link href="/auth">Login</Link></MenuItem>
+              <MenuItem onClick={handleClose}>
+                <Link href="/auth">Login</Link>
+              </MenuItem>
             </Menu>
           </Box>
         </Container>
@@ -148,7 +147,7 @@ function MainLayout({ children }: IMainLayoutProps) {
           pt: { sx: 8, md: 11 },
           pl: { sx: 8, md: 11 },
           pr: { sx: 8, md: 11 },
-          bgcolor: '#fff',
+          bgcolor: "#fff",
         }}
       >
         {children}
