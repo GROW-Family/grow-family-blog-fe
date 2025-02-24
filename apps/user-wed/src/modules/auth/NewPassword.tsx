@@ -13,7 +13,7 @@ type Props = {
   token?: string;
 };
 
-function ResetPassword({ token }: Props) {
+function NewPassword({ token }: Props) {
   const [showPassword, setShowPassword] = useState({
     password: false,
     confirm: false,
@@ -47,7 +47,7 @@ function ResetPassword({ token }: Props) {
         />
         <div className="mx-auto flex w-[568px] flex-col gap-12">
           <p className="text-center text-4xl font-extrabold leading-normal text-neutral-90">
-            Reset Password
+            Forgot Password
           </p>
           <form>
             <div className="flex-col-center gap-[18px]">
@@ -129,4 +129,4 @@ function ResetPassword({ token }: Props) {
   );
 }
 
-export default ResetPassword;
+export default NewPassword;
