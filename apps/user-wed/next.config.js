@@ -24,4 +24,8 @@ const plugins = [
   withNx,
 ];
 
-module.exports = composePlugins(...plugins)(nextConfig);
+module.exports = composePlugins(...plugins)({
+  experimental: {
+    missingSuspenseWithCSRBailout: false,
+  },
+});
