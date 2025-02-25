@@ -17,10 +17,12 @@ import {
   Tooltip,
   Typography,
 } from "@mui/material";
+import Cookies from "js-cookie";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
-import Cookies from 'js-cookie'
+import { appPaths } from "../common/constants/appPaths";
 import Footer from "./main/Footer";
 
 const pages = ["Technology", "Book", "Business"];
@@ -31,7 +33,8 @@ interface IMainLayoutProps {
 
 function MainLayout({ children }: IMainLayoutProps) {
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
-  const isLoggedIn = Cookies.get('token')
+  const isLoggedIn = Cookies.get("token");
+  const router = useRouter();
 
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorElUser);
@@ -133,17 +136,22 @@ function MainLayout({ children }: IMainLayoutProps) {
                 "aria-labelledby": "basic-button",
               }}
             >
-              <MenuItem onClick={handleClose}>Profile</MenuItem>
+              <MenuItem onClick={handleClose}>
+                <Link href={appPaths.account.profile}>Profile</Link>
+              </MenuItem>
               <MenuItem onClick={handleClose}>
                 <Link href="/studio">Studio</Link>
               </MenuItem>
-              <MenuItem onClick={
-                () => {
-                  isLoggedIn && Cookies.remove('token')
-                  handleClose()
-                }
-              }>
-                <Link href="/auth">{isLoggedIn? "Logout" : "Login"}</Link>
+              <MenuItem
+                onClick={() => {
+                  if (isLoggedIn) {
+                    Cookies.remove("token");
+                  }
+                  router.push(appPaths.auth.logIn);
+                  handleClose();
+                }}
+              >
+                {isLoggedIn ? "Logout" : "Login"}
               </MenuItem>
             </Menu>
           </Box>

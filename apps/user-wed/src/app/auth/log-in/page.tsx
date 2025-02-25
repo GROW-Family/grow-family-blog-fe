@@ -5,27 +5,27 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { appPaths } from "userSrc/common/constants/appPaths";
-import LoginForm from "userSrc/modules/auth/SignIn";
+import LoginForm from "userSrc/modules/auth/LoginForm";
 
 export const metadata: Metadata = {
-  title: "Sign In page",
-  description: "Sign In page",
+  title: "Log In page",
+  description: "Log In page",
 };
 
 function LogInPage() {
   return (
-    <div className="h-full w-full bg-white">
-      <div className="mt-[100px]">
+    <div className="flex-col-center h-screen bg-white">
+      <div className="h-max">
         <Image
-          className="mx-auto mb-4 mt-6"
+          className="mx-auto mb-4"
           src="/images/neguLogo.png"
           alt="logo"
           width={80}
           height={80}
         />
-        <div className="mx-auto flex w-[568px] flex-col gap-12">
+        <div className="mx-auto flex w-[568px] flex-col gap-8">
           <p className="text-center text-4xl font-extrabold leading-normal text-neutral-90">
-            Sign In
+            Log In
           </p>
           <div className="flex-center h-16 cursor-pointer gap-4 rounded-[40px] border border-neutral-90">
             <SvgIconComponent icon={EnumSvgIcon.google} />

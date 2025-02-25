@@ -78,7 +78,7 @@ function LoginForm() {
           type="submit"
           className="flex-center mr-auto h-16 w-[304px] rounded-[32px] bg-info-main text-xl font-semibold leading-normal text-white"
         >
-          Sign in
+          Log in
         </button>
       </div>
     </form>

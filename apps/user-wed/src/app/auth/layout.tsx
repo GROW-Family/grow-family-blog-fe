@@ -7,14 +7,13 @@ export default function AuthLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex-center flex h-screen w-screen">
-      <div className="relative h-full w-full">
+    <div className="grid grid-cols-2">
+      <div className="relative h-full">
         <Image
           src="/images/authBackground.png"
           alt="auth background"
-          width={1000}
-          height={1000}
-          className="object-fit h-full w-full"
+          layout="fill"
+          className="object-fit"
         />
         <div className="absolute left-[72px] top-[182px] w-[482px] text-white">
           <svg

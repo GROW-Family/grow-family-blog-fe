@@ -13,7 +13,7 @@ class Helper {
     }
   }
   static stringToBase64(str: string) {
-    return Buffer.from(str).toString("base64");
+    return window.btoa(str);
   }
 }
 

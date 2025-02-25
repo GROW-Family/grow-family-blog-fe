@@ -28,4 +28,7 @@ module.exports = composePlugins(...plugins)({
   experimental: {
     missingSuspenseWithCSRBailout: false,
   },
+  env: {
+    NEX_PUBLIC_API_KEY: '$grow-family-team-2025$',
+  },
 });

@@ -34,20 +34,20 @@ class AuthService {
     }
   }
   static async verifyEmail(email: string) {
-    fetcher
-      .post(apiRoutes.auth.verifyEmail, {
+    try {
+      const params = new URLSearchParams({
         email,
-        apiKey: Helper.stringToBase64(process.env.NEX_PRIVATE_API_KEY ?? ""),
-      })
-      .then((res) => {
-        return res.payload;
-      })
-      .catch((err) => {
-        console.log(err);
-        return {};
+        apiKey: Helper.stringToBase64(process.env.NEX_PUBLIC_API_KEY ?? ""),
       });
-
-    return email;
+      const res = await fetcher.post(
+        `${apiRoutes.auth.verifyEmail}?${params.toString()}`,
+        {},
+      );
+      return res.payload as IDataResponse<string>;
+    } catch (err) {
+      console.log(err);
+      return {} as IDataResponse<string>;
+    }
   }
   static async signUp(email: string, callback?: (res: any) => void) {
     console.log("file path: `apps/user-wed/src/services/auth/index.ts`");
