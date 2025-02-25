@@ -22,6 +22,9 @@
       "@libs/*": [
         "libs/components/src/lib/*"
       ],
+      "@helpers/*": [
+        "libs/components/src/util/*"
+      ],
       "userSrc/*": [
         "apps/user-wed/src/*"
       ]

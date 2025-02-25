@@ -1,7 +1,8 @@
 /* eslint-disable @nx/enforce-module-boundaries */
 import fetcher from "userSrc/apis/fetcher";
 import { apiRoutes } from "userSrc/apis/routes";
-import AuthHelper from "userSrc/utils/authHelper";
+import Helper from "@helpers/helper";
+import { IDataResponse } from "userSrc/apis/interfaces";
 
 class AuthService {
   static async getPublicKey() {
@@ -17,22 +18,28 @@ class AuthService {
 
     return publicKey;
   }
-
   static async signIn(payload: { userName: string; password: string }) {
     const key = await this.getPublicKey();
-    console.log("payload", {
-      key,
-      userName: payload.userName,
-      password: payload.password,
-    });
+    const pw = Helper.encryptPkcs1Base64(payload.password, key);
 
-    const pw = AuthHelper.encryptBase64(payload.password, key);
-    console.log("file path: `apps/user-wed/src/services/auth/index.ts`");
-    console.log({ key, userName: payload.userName, password: pw });
+    try {
+      const res = await fetcher.post(apiRoutes.auth.signIn, {
+        userName: payload.userName,
+        password: pw,
+      });
+      return res.payload as IDataResponse<string>;
+    } catch (err) {
+      console.log(err);
+      return {} as IDataResponse<string>;
+    }
+  }
+  static async verifyEmail(email: string) {
     fetcher
-      .post(apiRoutes.auth.signIn, { userName: payload.userName, password: pw })
+      .post(apiRoutes.auth.verifyEmail, {
+        email,
+        apiKey: Helper.stringToBase64(process.env.NEX_PRIVATE_API_KEY ?? ""),
+      })
       .then((res) => {
-        console.log(res.payload);
         return res.payload;
       })
       .catch((err) => {
@@ -40,9 +47,8 @@ class AuthService {
         return {};
       });
 
-    return payload;
+    return email;
   }
-
   static async signUp(email: string, callback?: (res: any) => void) {
     console.log("file path: `apps/user-wed/src/services/auth/index.ts`");
     console.log({ email });

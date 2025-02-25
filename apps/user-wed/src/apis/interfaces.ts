@@ -1,4 +1,4 @@
-import { type Method } from 'axios';
+import { type Method } from "axios";
 
 export interface IApiRequest {
   method: Lowercase<Method>;
@@ -16,11 +16,11 @@ export interface IRequestInterface {
   data: object;
 }
 
-export interface IDataResponse {
-    status: string;
-    data: unknown;
+export interface IDataResponse<T> {
+  status: number;
+  success: boolean;
+  data: T;
   message: string;
 }
-
 
 export type State = Record<string, VoidFunction>;
