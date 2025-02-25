@@ -1,24 +1,30 @@
 /* eslint-disable @nx/enforce-module-boundaries */
 "use client";
 import { TextField } from "@mui/material";
-import { useMutation } from "@tanstack/react-query";
 import Link from "next/link";
-import { toast } from "react-toastify";
 import AuthService from "userSrc/services/auth";
 import { appPaths } from "../../common/constants/appPaths";
+import Cookies from "js-cookie";
+import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 function LoginForm() {
-  const { mutate, data } = useMutation({
-    // mutationKey: ["auth", "login"],
-    mutationFn: async (payload: any) => {
-      const result = await AuthService.signIn(payload);
-
-      return result;
-    },
-    onSuccess: (res: any) => {
-      toast(res, {
-        position: "top-right",
-        autoClose: 5000,
+  const router = useRouter();
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    const userName = formData.get("username") as string;
+    const password = formData.get("password") as string;
+    const res = await AuthService.signIn({
+      userName,
+      password,
+    });
+    const { success, data } = res;
+    if (success) {
+      Cookies.set("token", data, { expires: 7 * 24 * 60 * 60 });
+      toast.success("Login successfully", {
+        position: "top-center",
+        autoClose: 1000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -26,20 +32,14 @@ function LoginForm() {
         progress: undefined,
         theme: "light",
       });
-    },
-  });
-
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
-    const data = new FormData(event.currentTarget);
-    const userName = data.get("username") as string;
-    const password = data.get("password") as string;
-
-    mutate({
-      userName,
-      password,
-    });
+      // get callbackUrl from url
+      const callbackUrl = window.location.search.split("callbackUrl=")[1];
+      if (callbackUrl) {
+        router.replace(callbackUrl);
+      } else {
+        router.replace("/");
+      }
+    }
   };
 
   return (

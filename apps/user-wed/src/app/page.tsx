@@ -4,7 +4,6 @@ import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import type { Metadata } from 'next';
-import 'next/navigation';
 import MainLayout from '../layouts/MainLayout';
 import HomePage from '../modules/home/HomePage';
 

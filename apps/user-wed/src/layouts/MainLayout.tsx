@@ -1,4 +1,5 @@
 "use client";
+
 import PrimaryButton from "@libs/button";
 import SearchIcon from "@mui/icons-material/Search";
 import {
@@ -19,6 +20,7 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
+import Cookies from 'js-cookie'
 import Footer from "./main/Footer";
 
 const pages = ["Technology", "Book", "Business"];
@@ -29,6 +31,7 @@ interface IMainLayoutProps {
 
 function MainLayout({ children }: IMainLayoutProps) {
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
+  const isLoggedIn = Cookies.get('token')
 
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorElUser);
@@ -134,8 +137,13 @@ function MainLayout({ children }: IMainLayoutProps) {
               <MenuItem onClick={handleClose}>
                 <Link href="/studio">Studio</Link>
               </MenuItem>
-              <MenuItem onClick={handleClose}>
-                <Link href="/auth">Login</Link>
+              <MenuItem onClick={
+                () => {
+                  isLoggedIn && Cookies.remove('token')
+                  handleClose()
+                }
+              }>
+                <Link href="/auth">{isLoggedIn? "Logout" : "Login"}</Link>
               </MenuItem>
             </Menu>
           </Box>

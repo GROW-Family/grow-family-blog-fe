@@ -1,7 +1,7 @@
 import NodeRSA from "node-rsa";
 
-class AuthHelper {
-  static encryptBase64(data: any, keyData: string) {
+class Helper {
+  static encryptPkcs1Base64(data: any, keyData: string) {
     try {
       const rsa = new NodeRSA(keyData, "pkcs1-public", {
         encryptionScheme: "pkcs1",
@@ -12,6 +12,9 @@ class AuthHelper {
       return "";
     }
   }
+  static stringToBase64(str: string) {
+    return Buffer.from(str).toString("base64");
+  }
 }
 
-export default AuthHelper;
+export default Helper;
