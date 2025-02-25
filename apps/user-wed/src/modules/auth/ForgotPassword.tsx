@@ -1,7 +1,31 @@
-import { TextField } from "@mui/material";
+/* eslint-disable @nx/enforce-module-boundaries */
+
+import AuthService from "userSrc/services/auth";
+
 import Image from "next/image";
+import { TextField } from "@mui/material";
+import { toast } from "react-toastify";
 
 function ForgotPassword() {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const email = formData.get("email") as string;
+    const res = await AuthService.forgotPassword(email);
+    const { success } = res;
+    if (success) {
+      toast.success("Please check your email", {
+        position: "top-center",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
+  };
 
   return (
     <div className="h-full w-full bg-white">
@@ -17,7 +41,7 @@ function ForgotPassword() {
           <p className="text-center text-4xl font-extrabold leading-normal text-neutral-90">
             Forgot Password
           </p>
-          <form>
+          <form onSubmit={handleSubmit}>
             <div className="flex-col-center gap-[18px]">
               <TextField
                 name="email"
