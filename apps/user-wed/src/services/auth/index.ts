@@ -3,6 +3,7 @@ import fetcher from "userSrc/apis/fetcher";
 import { apiRoutes } from "userSrc/apis/routes";
 import Helper from "@helpers/helper";
 import { IDataResponse } from "userSrc/apis/interfaces";
+import Cookies from "js-cookie";
 
 class AuthService {
   static async getPublicKey() {
@@ -102,8 +103,19 @@ class AuthService {
 
   static async changePassword(userId: string, password: string) {
     console.log("file path: `apps/user-wed/src/services/auth/index.ts`");
+    // Test
+    const token = Cookies.get().token;
+    // 
     const res = fetcher
-      .put(apiRoutes.auth.changePassword, { userId, password })
+      .put(
+        apiRoutes.auth.changePassword,
+        { userId, password },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      )
       .then((res) => {
         console.log(res.payload);
         return res.payload;

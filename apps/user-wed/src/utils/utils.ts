@@ -64,3 +64,8 @@ export const isJSON = (data: any): boolean => {
   }
   return true;
 };
+
+export const preventDefaultClickEvent = (e) => {
+  e.stopPropagation();
+  e.preventDefault();
+};
