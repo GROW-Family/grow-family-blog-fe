@@ -66,6 +66,55 @@ class AuthService {
 
     return res;
   }
+
+  static async forgotPassword(email: string) {
+    console.log("file path: `apps/user-wed/src/services/auth/index.ts`");
+    const apiKey = "JGdyb3ctZmFtaWx5LXRlYW0tMjAyNSQ=";
+    const res = await fetcher
+      .post(
+        `${apiRoutes.auth.forgotPassword}?email=${email}&apiKey=${apiKey}`,
+        email,
+      )
+      .then((res) => {
+        console.log(res.payload);
+        return res.payload;
+      })
+      .catch((err) => {
+        console.log(err);
+        return {};
+      });
+    return res;
+  }
+
+  static async getProfile(token: string) {
+    try {
+      const res = await fetcher.get(apiRoutes.auth.getProfile, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      return res.payload;
+    } catch (err) {
+      console.error(err);
+      return {};
+    }
+  }
+
+  static async changePassword(userId: string, password: string) {
+    console.log("file path: `apps/user-wed/src/services/auth/index.ts`");
+    const res = fetcher
+      .put(apiRoutes.auth.changePassword, { userId, password })
+      .then((res) => {
+        console.log(res.payload);
+        return res.payload;
+      })
+      .catch((err) => {
+        console.log(err);
+        return {};
+      });
+
+    return res;
+  }
 }
 
 export default AuthService;
