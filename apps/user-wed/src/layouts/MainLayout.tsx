@@ -24,6 +24,7 @@ import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { appPaths } from "../common/constants/appPaths";
 import Footer from "./main/Footer";
+import Helper from "@helpers/helper";
 
 const pages = ["Technology", "Book", "Business"];
 
@@ -147,7 +148,8 @@ function MainLayout({ children }: IMainLayoutProps) {
                   if (isLoggedIn) {
                     Cookies.remove("token");
                   }
-                  router.push(appPaths.auth.logIn);
+                  const url = Helper.generatePathWithCallbackUrl(appPaths.auth.logIn);
+                  router.push(url);
                   handleClose();
                 }}
               >

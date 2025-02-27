@@ -4,7 +4,7 @@
  *********************************************************/
 
 import React from 'react'
-import Stuido from '../../modules/studio'
+import Stuido from '../../../modules/studio'
 
 function Studio() {
   return (

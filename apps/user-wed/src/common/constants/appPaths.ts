@@ -1,4 +1,5 @@
 export const appPaths = {
+  home: "/",
   auth: {
     logIn: "/auth/log-in",
     signUp: "/auth/sign-up",
@@ -9,5 +10,5 @@ export const appPaths = {
     profile: "/account/profile",
   },
 };
-export const privateRoutes: string[] = ["/accounts"];
+export const privateRoutes: string[] = ["/account"];
 export const authRoutes: string[] = ["/auth"];

@@ -15,6 +15,17 @@ class Helper {
   static stringToBase64(str: string) {
     return window.btoa(str);
   }
+  static generatePathWithCallbackUrl(path: string, callbackUrl?: string) {
+    if (callbackUrl) {
+      return `${path}?callbackUrl=${callbackUrl}`;
+    } else if (window) {
+      const pathname = window.location.pathname;
+      const search = window.location.search;
+      return `${path}?callbackUrl=${pathname}${search}`;
+    } else {
+      return path;
+    }
+  }
 }
 
 export default Helper;
