@@ -12,7 +12,7 @@ export default function AuthLayout({
         <Image
           src="/images/authBackground.png"
           alt="auth background"
-          layout="fill"
+          fill
           className="object-fit"
         />
         <div className="absolute left-[72px] top-[182px] w-[482px] text-white">

@@ -53,7 +53,7 @@ function MainLayout({ children }: IMainLayoutProps) {
         <Container maxWidth="xl" sx={{ display: "flex" }}>
           <Toolbar disableGutters>
             <div className="h-[50px] w-[100px]">
-              <Image alt="logo" layout="fill" src="/images/neguNguNgu.png" />
+              <Image alt="logo" fill src="/images/neguNguNgu.png" />
             </div>
           </Toolbar>
           <Box sx={{ flexGrow: 2, display: { xs: "flex", md: "none" } }}>
