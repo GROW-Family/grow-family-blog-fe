@@ -1,7 +1,9 @@
 /* eslint-disable @nx/enforce-module-boundaries */
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import Cookies from "js-cookie";
 
-
+import { toast } from "react-toastify";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import {
   FormControl,
@@ -10,26 +12,30 @@ import {
   InputLabel,
   OutlinedInput,
 } from "@mui/material";
-import Cookies from "js-cookie";
 import Image from "next/image";
 import AuthService from "userSrc/services/auth";
-import { toast } from "react-toastify";
+
+import { preventDefaultClickEvent } from "userSrc/utils/utils";
 
 type Props = {
   token?: string;
 };
 
 function NewPassword({ token }: Props) {
+  const router = useRouter();
+  const [userId, setUserId] = useState<string>("");
+
   useEffect(() => {
     if (token) {
       Cookies.set("token", token, { expires: 7 * 24 * 60 * 60 });
-      getData(token);
     }
+    getData(token);
   }, []);
 
   const getData = async (token) => {
-    const data = await AuthService.getProfile(token);
-    return data;
+    const dataProfile = await AuthService.getProfile(token);
+    setUserId(dataProfile?.data?.userId)
+    return dataProfile;
   };
 
   const [showPassword, setShowPassword] = useState({
@@ -41,27 +47,13 @@ function NewPassword({ token }: Props) {
     setShowPassword((prev) => ({ ...prev, [field]: !prev[field] }));
   };
 
-  const handleMouseDownPassword = (
-    event: React.MouseEvent<HTMLButtonElement>,
-  ) => {
-    event.preventDefault();
-  };
-
-  const handleMouseUpPassword = (
-    event: React.MouseEvent<HTMLButtonElement>,
-  ) => {
-    event.preventDefault();
-  };
-
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const password = formData.get("password") as string;
-    // Test
-    const userId = '86fa7865-e348-4332-8a9d-08dd5563a247';
     const res = await AuthService.changePassword(userId, password);
-    const { success } = res;
-    if (success) {
+    const { success, status } = res;
+    if (success || status === 200) {
       toast.success("Password change successful", {
         position: "top-center",
         autoClose: 1000,
@@ -72,6 +64,7 @@ function NewPassword({ token }: Props) {
         progress: undefined,
         theme: "light",
       });
+      router.replace("/");
     }
   };
 
@@ -97,6 +90,7 @@ function NewPassword({ token }: Props) {
                 </InputLabel>
                 <OutlinedInput
                   id="password"
+                  name="password"
                   type={showPassword.password ? "text" : "password"}
                   sx={{ borderRadius: "12px" }}
                   endAdornment={
@@ -108,8 +102,8 @@ function NewPassword({ token }: Props) {
                             : "display the password"
                         }
                         onClick={() => handleClickShow("password")}
-                        onMouseDown={handleMouseDownPassword}
-                        onMouseUp={handleMouseUpPassword}
+                        onMouseDown={preventDefaultClickEvent}
+                        onMouseUp={preventDefaultClickEvent}
                         edge="end"
                       >
                         {showPassword.password ? (
@@ -124,11 +118,12 @@ function NewPassword({ token }: Props) {
                 />
               </FormControl>
               <FormControl variant="outlined" className="w-full">
-                <InputLabel htmlFor="outlined-adornment-password">
+                <InputLabel htmlFor="confirm-password">
                   Confirm Password
                 </InputLabel>
                 <OutlinedInput
                   id="confirm-password"
+                  name="confirm-password"
                   type={showPassword.confirm ? "text" : "password"}
                   sx={{ borderRadius: "12px" }}
                   endAdornment={
@@ -140,8 +135,8 @@ function NewPassword({ token }: Props) {
                             : "display the password"
                         }
                         onClick={() => handleClickShow("confirm")}
-                        onMouseDown={handleMouseDownPassword}
-                        onMouseUp={handleMouseUpPassword}
+                        onMouseDown={preventDefaultClickEvent}
+                        onMouseUp={preventDefaultClickEvent}
                         edge="end"
                       >
                         {showPassword.confirm ? (
