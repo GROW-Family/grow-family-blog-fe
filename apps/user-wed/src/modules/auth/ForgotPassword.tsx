@@ -28,7 +28,7 @@ function ForgotPassword() {
   };
 
   return (
-    <div className="h-full w-full bg-white">
+    <div className="h-screen w-full bg-white">
       <div className="mt-[100px]">
         <Image
           className="mx-auto mb-4 mt-6"
