@@ -3,7 +3,10 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
 
-import { toast } from "react-toastify";
+import AuthService from "userSrc/services/auth";
+
+import { preventDefaultClickEvent } from "userSrc/utils/utils";
+
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import {
   FormControl,
@@ -13,9 +16,7 @@ import {
   OutlinedInput,
 } from "@mui/material";
 import Image from "next/image";
-import AuthService from "userSrc/services/auth";
-
-import { preventDefaultClickEvent } from "userSrc/utils/utils";
+import { toast } from "react-toastify";
 
 type Props = {
   token?: string;
@@ -69,7 +70,7 @@ function NewPassword({ token }: Props) {
   };
 
   return (
-    <div className="h-full w-full bg-white">
+    <div className="w-full h-screen bg-white">
       <div className="mt-[100px]">
         <Image
           className="mx-auto mb-4 mt-6"
