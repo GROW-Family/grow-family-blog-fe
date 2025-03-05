@@ -25,6 +25,10 @@ type Props = {
 function NewPassword({ token }: Props) {
   const router = useRouter();
   const [userId, setUserId] = useState<string>("");
+  const [errors, setErrors] = useState<{
+    password?: string;
+    confirmPassword?: string;
+  }>({});
 
   useEffect(() => {
     if (token) {
@@ -35,7 +39,7 @@ function NewPassword({ token }: Props) {
 
   const getData = async (token) => {
     const dataProfile = await AuthService.getProfile(token);
-    setUserId(dataProfile?.data?.userId)
+    setUserId(dataProfile?.data?.userId);
     return dataProfile;
   };
 
@@ -52,6 +56,26 @@ function NewPassword({ token }: Props) {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const password = formData.get("password") as string;
+    const confirmPassword = formData.get("confirm-password") as string;
+
+    const newErrors: { password?: string; confirmPassword?: string } = {};
+
+    if (!password) {
+      newErrors.password = "Password is required.";
+    } else if (password.length < 8) {
+      newErrors.password = "Password must be at least 8 characters.";
+    }
+
+    if (!confirmPassword) {
+      newErrors.confirmPassword = "Confirm Password is required.";
+    } else if (confirmPassword !== password) {
+      newErrors.confirmPassword = "Passwords do not match.";
+    }
+
+    setErrors(newErrors);
+
+    if (Object.keys(newErrors).length > 0) return;
+
     const res = await AuthService.changePassword(userId, password);
     const { success, status } = res;
     if (success || status === 200) {
@@ -70,7 +94,7 @@ function NewPassword({ token }: Props) {
   };
 
   return (
-    <div className="w-full h-screen bg-white">
+    <div className="h-screen w-full bg-white">
       <div className="mt-[100px]">
         <Image
           className="mx-auto mb-4 mt-6"
@@ -85,10 +109,12 @@ function NewPassword({ token }: Props) {
           </p>
           <form onSubmit={handleSubmit}>
             <div className="flex-col-center gap-[18px]">
-              <FormControl variant="outlined" className="w-full">
-                <InputLabel htmlFor="password">
-                  New Password
-                </InputLabel>
+              <FormControl
+                variant="outlined"
+                className="w-full"
+                error={!!errors.password}
+              >
+                <InputLabel htmlFor="password">New Password</InputLabel>
                 <OutlinedInput
                   id="password"
                   name="password"
@@ -117,8 +143,15 @@ function NewPassword({ token }: Props) {
                   }
                   label="New Password"
                 />
+                {errors.password && (
+                  <p className="mt-1 text-xs text-red-500">{errors.password}</p>
+                )}
               </FormControl>
-              <FormControl variant="outlined" className="w-full">
+              <FormControl
+                variant="outlined"
+                className="w-full"
+                error={!!errors.confirmPassword}
+              >
                 <InputLabel htmlFor="confirm-password">
                   Confirm Password
                 </InputLabel>
@@ -150,6 +183,11 @@ function NewPassword({ token }: Props) {
                   }
                   label="Confirm Password"
                 />
+                {errors.confirmPassword && (
+                  <p className="mt-1 text-xs text-red-500">
+                    {errors.confirmPassword}
+                  </p>
+                )}
               </FormControl>
               <button
                 type="submit"

@@ -1,16 +1,30 @@
 /* eslint-disable @nx/enforce-module-boundaries */
+import { useState } from "react";
 
 import AuthService from "userSrc/services/auth";
+
+import { isEmail } from "userSrc/utils/utils";
 
 import Image from "next/image";
 import { TextField } from "@mui/material";
 import { toast } from "react-toastify";
 
 function ForgotPassword() {
+  const [errorMsg, setErrorMsg] = useState<string>('');
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const email = formData.get("email") as string;
+    if (!email) {
+      setErrorMsg("Email is required.");
+      return;
+    }
+    if (!isEmail(email)) {
+      setErrorMsg("The email you entered is invalid.");
+      return;
+    }
+    setErrorMsg("");
     const res = await AuthService.forgotPassword(email);
     const { success } = res;
     if (success) {
@@ -47,6 +61,8 @@ function ForgotPassword() {
                 name="email"
                 label="Email address"
                 className="w-full"
+                error={!!errorMsg}
+                helperText={errorMsg}
                 InputProps={{
                   style: {
                     borderRadius: "12px",
